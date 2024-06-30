@@ -151,7 +151,6 @@ class CleanUpEdges(bpy.types.Operator):
         for e in edges:
             for v in e.verts:
                 fake_vert = FakeVert()
-                fake_vert.verts = []
                 fake_vert.verts.append(v)
                 fake_vert.pos = v.co
                 fake_verts[v] = fake_vert
