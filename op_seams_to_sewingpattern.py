@@ -198,7 +198,7 @@ class Seams_To_SewingPattern(Operator):
 
         # isolate all face islands, and UV unwrap each island
 
-        faces = set(bm.faces[:])
+        faces = set(bm.faces)
         wm.progress_begin(0, 99)
         progress_max = len(faces)
         progress = 0
