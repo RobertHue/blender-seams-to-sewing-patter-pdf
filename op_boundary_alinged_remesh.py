@@ -176,7 +176,7 @@ class Remesher(bpy.types.Operator):
             bm = remesher.remesh(
                 self.edge_length, self.iterations, self.quads, self.reproject
             )
-        except:
+        except Exception:
             self.report(
                 {"ERROR"},
                 "Remeshing failed, probably because there is a piece that can't be flattened out.\nThat usually means there are seams missing from a piece.",
