@@ -132,11 +132,11 @@ exclude = ["examples"]
 # LINTER
 
 [tool.ruff]
-target-version = ["py38", "py39", "py310", "py311"]
+target-version = "py38"
 select = ["F", "E"]
-extend-select = ["W", "C90", "YTT", "ANN", "ASYNC", "A", "C4", "RET", "SIM", "PLC", "PLE", "PLR", "PLW", "FLY", "PERF", "RUF", "UP", "SIM"]
-ignore = ["F401", "E402", "B905", "SIM300", "PD901", "PERF203", "ANN101", "PLR5501"]
-fixable = ["F", "E", "W", "UP", "C90", "YTT", "ANN", "ASYNC", "A", "C4", "RET", "SIM", "PLC", "PLE", "PLR", "PLW", "FLY", "PERF", "RUF"]
+extend-select = ["W", "C90", "YTT", "ANN", "A", "C4", "RET", "SIM", "PLC", "PLE", "PLR", "PLW", "RUF", "UP", "SIM"]
+ignore = ["F401", "E402", "B905", "SIM300", "PD901", "ANN101"]
+fixable = ["F", "E", "W", "UP", "C90", "YTT", "ANN", "A", "C4", "RET", "SIM", "PLC", "PLE", "PLR", "PLW", "RUF"]
 unfixable = []
 line-length = 80
 # extend-exclude = ["tests", "test"]
