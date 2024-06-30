@@ -25,7 +25,7 @@ class Seams_To_SewingPattern(Operator):
         "Converts a manifold mesh with seams into a swewing pattern for cloth"
         " simulation"
     )
-    bl_options = {'REGISTER', 'UNDO'}
+    bl_options = {"REGISTER", "UNDO"}
 
     do_unwrap: EnumProperty(
         name="Unwrap",
@@ -33,11 +33,11 @@ class Seams_To_SewingPattern(Operator):
             "Perform an unwrap before unfolding. Identical to UV > Unwrap"
         ),
         items=(
-            ('ANGLE_BASED', "Angle based", ""),
-            ('CONFORMAL', "Conformal", ""),
-            ('KEEP', "Keep existing (advanced)", ""),
+            ("ANGLE_BASED", "Angle based", ""),
+            ("CONFORMAL", "Conformal", ""),
+            ("KEEP", "Keep existing (advanced)", ""),
         ),
-        default='ANGLE_BASED',
+        default="ANGLE_BASED",
     )
     keep_original: BoolProperty(
         name="Work on duplicate",
@@ -70,20 +70,16 @@ class Seams_To_SewingPattern(Operator):
     def draw(self, context):
         layout = self.layout
         row = layout.row()
-        row.label(
-            text="Unfolds this mesh by cutting along seams.", icon='INFO'
-        )
+        row.label(text="Unfolds this mesh by cutting along seams.", icon="INFO")
         layout.separator()
         layout.row()
         layout.row()
         row = layout.row()
         row.prop(self, "do_unwrap")
-        if(self.do_unwrap == 'KEEP'):
+        if self.do_unwrap == "KEEP":
             row = layout.row()
-            row.alignment = 'EXPAND'
-            row.label(
-                text="Ensure your seams match your UV's!", icon='EDGESEL'
-            )
+            row.alignment = "EXPAND"
+            row.label(text="Ensure your seams match your UV's!", icon="EDGESEL")
 
         layout.row()
         row = layout.row()
@@ -111,21 +107,21 @@ class Seams_To_SewingPattern(Operator):
             bpy.context.view_layer.objects.active = obj
 
         if self.apply_modifiers:
-            bpy.ops.object.convert(target='MESH')
+            bpy.ops.object.convert(target="MESH")
             obj = bpy.context.active_object
 
         wm = bpy.context.window_manager
-        bpy.ops.object.mode_set(mode='EDIT')
+        bpy.ops.object.mode_set(mode="EDIT")
 
         obj = bpy.context.edit_object
         me = obj.data
 
         bpy.ops.mesh.select_mode(type="EDGE")
 
-        bpy.ops.mesh.select_all(action='SELECT')
-        if (self.do_unwrap != 'KEEP'):
+        bpy.ops.mesh.select_all(action="SELECT")
+        if self.do_unwrap != "KEEP":
             bpy.ops.uv.unwrap(method=self.do_unwrap, margin=0.02)
-        bpy.ops.mesh.select_all(action='DESELECT')
+        bpy.ops.mesh.select_all(action="DESELECT")
 
         bm = bmesh.from_edit_mesh(me)
 
@@ -135,12 +131,12 @@ class Seams_To_SewingPattern(Operator):
 
         # Calculate edge length based on a surface of equilateral triangles.
 
-        if (self.use_remesh):
+        if self.use_remesh:
             current_area = sum(f.calc_area() for f in bm.faces)
             target_triangle_count = self.target_tris
             area_per_triangle = current_area / target_triangle_count
 
-            max_edge_length = math.sqrt(area_per_triangle/(math.sqrt(3)/4))
+            max_edge_length = math.sqrt(area_per_triangle / (math.sqrt(3) / 4))
 
             # A bias to compensate for stretching.
             self.ensure_edgelength(max_edge_length * 0.8, bm, wm)
@@ -154,22 +150,22 @@ class Seams_To_SewingPattern(Operator):
 
         if not warn_any_seam:
             self.report(
-                {'ERROR'},
+                {"ERROR"},
                 (
-                    'There are no seams in this mesh. Please add seams where'
-                    ' you want to cut the model.'
-                )
+                    "There are no seams in this mesh. Please add seams where"
+                    " you want to cut the model."
+                ),
             )
-            return {'CANCELLED'}
+            return {"CANCELLED"}
 
         function_wrapper.do_bevel()
 
         #####
-        '''
+        """
         error now because I need to fix the fact that fanning edges dont exist
         anymore maybe by finding ngons instead?
         or removing doubled afer
-        '''
+        """
         #####
 
         # fix fanning seams
@@ -194,7 +190,7 @@ class Seams_To_SewingPattern(Operator):
 
         bmesh.ops.collapse(bm, edges=degenerate_edges, uvs=True)
 
-        bpy.ops.mesh.delete(type='ONLY_FACE')
+        bpy.ops.mesh.delete(type="ONLY_FACE")
 
         bpy.ops.mesh.select_mode(type="FACE")
         faceGroups = []
@@ -206,7 +202,7 @@ class Seams_To_SewingPattern(Operator):
         progress_max = len(faces)
         progress = 0
         while faces:
-            bpy.ops.mesh.select_all(action='DESELECT')
+            bpy.ops.mesh.select_all(action="DESELECT")
             face = faces.pop()
             face.select = True
             bpy.ops.mesh.select_linked()
@@ -228,8 +224,8 @@ class Seams_To_SewingPattern(Operator):
         for g in faceGroups:
             progress += 1
             wm.progress_update((progress / len(faceGroups)))
-            bpy.ops.mesh.select_mode(type='FACE')
-            bpy.ops.mesh.select_all(action='DESELECT')
+            bpy.ops.mesh.select_mode(type="FACE")
+            bpy.ops.mesh.select_all(action="DESELECT")
             average_position = mathutils.Vector((0, 0, 0))
             facenum = 0
 
@@ -308,10 +304,10 @@ class Seams_To_SewingPattern(Operator):
         # done
 
         area_ratio = math.sqrt(area_before / area_after)
-        bpy.ops.mesh.select_all(action='SELECT')
+        bpy.ops.mesh.select_all(action="SELECT")
         previous_pivot = bpy.context.scene.tool_settings.transform_pivot_point
         bpy.context.scene.tool_settings.transform_pivot_point = (
-            'INDIVIDUAL_ORIGINS'
+            "INDIVIDUAL_ORIGINS"
         )
         bpy.ops.transform.resize(value=(area_ratio, area_ratio, area_ratio))
         bpy.context.scene.tool_settings.transform_pivot_point = previous_pivot
@@ -319,26 +315,26 @@ class Seams_To_SewingPattern(Operator):
         obj["S2S_UVtoWORLDscale"] = area_ratio
 
         function_wrapper.do_update_edit_mesh(me)
-        bpy.ops.mesh.select_all(action='SELECT')
+        bpy.ops.mesh.select_all(action="SELECT")
 
         bpy.ops.mesh.remove_doubles(threshold=0.0004, use_unselected=False)
 
-        if (self.use_remesh):
+        if self.use_remesh:
             bpy.ops.mesh.dissolve_limited(angle_limit=0.01)
-            bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
+            bpy.ops.object.mode_set(mode="OBJECT", toggle=False)
             bpy.ops.remesh.boundary_aligned_remesh(
                 edge_length=max_edge_length, iterations=10, reproject=False
             )
 
-        bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
+        bpy.ops.object.mode_set(mode="OBJECT", toggle=False)
 
         wm.progress_end()
 
         # fix 2.9 wm.progress problem
-        bpy.context.window.cursor_set('NONE')
-        bpy.context.window.cursor_set('DEFAULT')
+        bpy.context.window.cursor_set("NONE")
+        bpy.context.window.cursor_set("DEFAULT")
 
-        return{'FINISHED'}
+        return {"FINISHED"}
 
     def ensure_edgelength(self, max_length, mesh, wm):
         seam_edges = list(filter(lambda e: e.seam, mesh.edges))
@@ -360,6 +356,6 @@ class Seams_To_SewingPattern(Operator):
             )
 
         bmesh.ops.triangulate(
-            mesh, faces=mesh.faces, quad_method='BEAUTY', ngon_method='BEAUTY'
+            mesh, faces=mesh.faces, quad_method="BEAUTY", ngon_method="BEAUTY"
         )
         # done

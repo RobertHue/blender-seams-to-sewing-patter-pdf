@@ -208,7 +208,6 @@ class Export_Sewingpattern(bpy.types.Operator):
             svgstring += '"/>'
 
             # print markers
-
             for lg in loop_groups:
                 # markers
                 if self.alignment_markers != "OFF":
