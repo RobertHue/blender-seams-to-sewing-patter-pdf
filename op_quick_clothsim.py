@@ -70,9 +70,9 @@ class QuickClothsim(ObjectModeOperator, Operator):
                     cloth_mod.settings.sewing_force_max = 15
 
                 # viscosity
-                if self.air_visc == True:
+                if self.air_visc:
                     cloth_mod.settings.air_damping = 10
-                if self.use_gravity == False:
+                if not self.use_gravity:
                     cloth_mod.settings.effector_weights.gravity = 0
 
         return {"FINISHED"}
