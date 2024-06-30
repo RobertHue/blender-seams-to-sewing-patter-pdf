@@ -104,7 +104,13 @@ class Export_Sewingpattern(bpy.types.Operator):
 
         obj = bpy.context.edit_object
         me = obj.data
-        bm = bmesh.from_edit_mesh(me)
+
+        # Ensure me is a Mesh
+        if isinstance(me, bpy.types.Mesh):
+            bm = bmesh.from_edit_mesh(me)
+        else:
+            self.report({'ERROR'}, "Active object's data is not a mesh")
+            return {'CANCELLED'}
 
         document_scale = 1000.0  # millimeter
         document_scale *= obj["S2S_UVtoWORLDscale"]
@@ -284,7 +290,13 @@ class Export_Sewingpattern(bpy.types.Operator):
 
         obj = bpy.context.edit_object
         me = obj.data
-        bm = bmesh.from_edit_mesh(me)
+
+        # Ensure me is a Mesh
+        if isinstance(me, bpy.types.Mesh):
+            bm = bmesh.from_edit_mesh(me)
+        else:
+            self.report({'ERROR'}, "Active object's data is not a mesh")
+            return {'CANCELLED'}
 
         bpy.ops.mesh.region_to_loop()
 

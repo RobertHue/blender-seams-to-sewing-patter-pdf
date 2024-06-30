@@ -79,7 +79,13 @@ class CleanUpEdges(bpy.types.Operator):
         bpy.ops.mesh.select_mode(type="EDGE")
 
         obj = bpy.context.active_object
-        bm = bmesh.from_edit_mesh(obj.data)
+
+        # Ensure obj.data is a Mesh
+        if isinstance(obj.data, bpy.types.Mesh):
+            bm = bmesh.from_edit_mesh(obj.data)
+        else:
+            self.report({'ERROR'}, "Active object's data is not a mesh")
+            return {'CANCELLED'}
 
         bm.verts.ensure_lookup_table()
         bm.edges.ensure_lookup_table()
@@ -190,7 +196,13 @@ class CleanUpEdges(bpy.types.Operator):
         fake_verts.clear()
 
         bpy.ops.mesh.remove_doubles(threshold=0.0001)
-        bm = bmesh.from_edit_mesh(bpy.context.active_object.data)
+
+        # Ensure bpy.context.active_object.data is a Mesh
+        if isinstance(bpy.context.active_object.data, bpy.types.Mesh):
+            bm = bmesh.from_edit_mesh(bpy.context.active_object.data)
+        else:
+            self.report({'ERROR'}, "Active object's data is not a mesh")
+            return {'CANCELLED'}
 
         selection = list(filter(lambda e: e.select, bm.edges))
 

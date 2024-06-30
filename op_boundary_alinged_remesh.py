@@ -183,7 +183,14 @@ class Remesher(bpy.types.Operator):
                 "Remeshing failed, probably because there is a piece that can't be flattened out.\nThat usually means there are seams missing from a piece.",
             )
             return {"CANCELLED"}
-        bm.to_mesh(obj.data)
+        
+        # Ensure obj.data is a Mesh
+        if isinstance(obj.data, bpy.types.Mesh):
+            bm.to_mesh(obj.data)
+        else:
+            self.report({'ERROR'}, "Active object's data is not a mesh")
+            return {'CANCELLED'}
+
         context.area.tag_redraw()
         return {"FINISHED"}
 
