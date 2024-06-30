@@ -1,9 +1,6 @@
 import bpy
 from bpy.props import BoolProperty
 from bpy.props import EnumProperty
-from bpy.props import FloatProperty
-from bpy.props import FloatVectorProperty
-from bpy.props import IntProperty
 from bpy.types import Operator
 
 
