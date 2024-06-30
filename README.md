@@ -6,6 +6,23 @@ An add-on for Blender that assists with setting up 2D sewing patterns from 3D mo
 [![](https://img.youtube.com/vi/EZr__pTxsKk/mqdefault.jpg)\
 ▶ Quick guide on youtube](https://www.youtube.com/watch?v=EZr__pTxsKk)
 
+## Table of Contents
+
+- [Blender Seams to Sewing Pattern](#blender-seams-to-sewing-pattern)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Very Brief Overview](#very-brief-overview)
+  - [Development](#development)
+  - [Repository structure](#repository-structure)
+    - [Installation prerequisites](#installation-prerequisites)
+    - [Possible Issues](#possible-issues)
+  - [Reporting Issues](#reporting-issues)
+  - [Troubleshooting](#troubleshooting)
+  - [License](#license)
+  - [Sustainability and Ethics 🌱](#sustainability-and-ethics-)
+  - [Known Issues](#known-issues)
+
 ## Installation
 
 Download the archive here:\
@@ -119,3 +136,13 @@ See also:\
 ## Known Issues
 
 - UV's are messed up after Remesh
+
+[Git]: https://git-scm.com/downloads
+[Python]: https://www.python.org/
+[VSCode]: https://code.visualstudio.com/
+[Poetry]: https://python-poetry.org/
+[isort]: https://pycqa.github.io/isort/
+[Black]: https://github.com/psf/black
+[mypy]: https://mypy.readthedocs.io/en/stable/
+[Ruff]: https://github.com/astral-sh/ruff
+[pyright]: https://github.com/microsoft/pyright
