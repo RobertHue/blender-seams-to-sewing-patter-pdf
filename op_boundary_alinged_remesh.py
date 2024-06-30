@@ -10,11 +10,12 @@
 #    "category": "Remesh",
 #}
 
-import bpy
 import bmesh
+import bpy
 from mathutils import Vector
 from mathutils.bvhtree import BVHTree
 from mathutils.kdtree import KDTree
+
 
 # Main Remesher class, this stores all the needed data
 class BoundaryAlignedRemesher:

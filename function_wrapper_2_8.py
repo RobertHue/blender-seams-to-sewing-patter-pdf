@@ -1,5 +1,6 @@
-import bpy
 import bmesh
+import bpy
+
 
 def do_bevel():
     bpy.ops.mesh.bevel(vertex_only=False, offset=0.0002)

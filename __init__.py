@@ -25,6 +25,7 @@ else:
 import bpy
 from bpy.types import Menu
 
+
 def clean_up_func(self, context):
     self.layout.separator()
     self.layout.operator("mesh.clean_up_knife_cut")

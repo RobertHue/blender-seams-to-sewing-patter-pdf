@@ -1,14 +1,14 @@
-import bpy
-from collections import defaultdict
-from bpy.types import Operator
-import bmesh
-import mathutils
 import math
-from bpy.props import (
-    BoolProperty,
-    IntProperty,
-    EnumProperty,
-)
+from collections import defaultdict
+
+import bmesh
+import bpy
+import mathutils
+from bpy.props import BoolProperty
+from bpy.props import EnumProperty
+from bpy.props import IntProperty
+from bpy.types import Operator
+
 
 if bpy.app.version >= (3, 0, 0):
     from . import function_wrapper_3_0 as function_wrapper
