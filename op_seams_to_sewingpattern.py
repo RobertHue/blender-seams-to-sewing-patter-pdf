@@ -124,7 +124,12 @@ class Seams_To_SewingPattern(Operator):
             bpy.ops.uv.unwrap(method=self.do_unwrap, margin=0.02)
         bpy.ops.mesh.select_all(action="DESELECT")
 
-        bm = bmesh.from_edit_mesh(me)
+        # Ensure me is a Mesh
+        if not isinstance(obj.data, bpy.types.Mesh):
+            bm = bmesh.from_edit_mesh(me)
+        else:
+            self.report({'ERROR'}, "Active object's data is not a mesh")
+            return {'CANCELLED'}
 
         obj["S2S_InitialVolume"] = bm.calc_volume()
 
