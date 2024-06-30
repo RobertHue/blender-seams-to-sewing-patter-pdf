@@ -128,8 +128,8 @@ class Seams_To_SewingPattern(Operator):
         if isinstance(me, bpy.types.Mesh):
             bm = bmesh.from_edit_mesh(me)
         else:
-            self.report({'ERROR'}, "Active object's data is not a mesh")
-            return {'CANCELLED'}
+            self.report({"ERROR"}, "Active object's data is not a mesh")
+            return {"CANCELLED"}
 
         obj["S2S_InitialVolume"] = bm.calc_volume()
 
@@ -328,7 +328,7 @@ class Seams_To_SewingPattern(Operator):
         if self.use_remesh:
             bpy.ops.mesh.dissolve_limited(angle_limit=0.01)
             bpy.ops.object.mode_set(mode="OBJECT", toggle=False)
-            bpy.ops.remesh.boundary_aligned_remesh( # type: ignore
+            bpy.ops.remesh.boundary_aligned_remesh(  # type: ignore
                 edge_length=max_edge_length, iterations=10, reproject=False
             )
 
