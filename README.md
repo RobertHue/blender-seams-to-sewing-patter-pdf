@@ -84,6 +84,14 @@ To install these dependencies, just execute the following command:
    poetry install
    ```
 
+Hit `F1` and select the `Python: Select Interpreter` choose your `.venv` Poetry `python.exe` from the previous `poetry install` command.
+
+To work in the virtual environment created by Poetry, execute the following command:
+
+   ```console
+   poetry shell
+   ```
+
 ### Possible Issues
 
 If you get the following error while launcher `Blender: Start`
