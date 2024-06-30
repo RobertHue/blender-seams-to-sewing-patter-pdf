@@ -168,7 +168,7 @@ class Export_Sewingpattern(bpy.types.Operator):
                 vertex_to_match = relevant_loops[0].link_loop_next.vert
                 relevant_loops.remove(relevant_loops[0])
                 match = True
-                while match == True:
+                while match:
                     match = False
                     for x in range(0, len(relevant_loops)):
                         if (
