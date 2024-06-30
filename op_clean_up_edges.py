@@ -1,3 +1,7 @@
+from typing import List
+
+from mathutils import Vector
+
 import bmesh
 import bpy
 from bpy.props import BoolProperty
@@ -5,14 +9,16 @@ from bpy.props import FloatProperty
 from bpy.props import IntProperty
 
 
-class FakeEdge:
-    v1 = None
-    v2 = None
-
-
 class FakeVert:
-    pos = None
-    verts = None
+    pos: Vector
+    verts: List[bmesh.types.BMVert] = []
+
+
+
+class FakeEdge:
+    v1: FakeVert
+    v2: FakeVert
+
 
 
 class CleanUpEdges(bpy.types.Operator):
