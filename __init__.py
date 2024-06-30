@@ -1,6 +1,12 @@
 import bpy
 from bpy.types import Menu
 
+from . import op_seams_to_sewingpattern
+from . import op_export_sewingpattern
+from . import op_quick_clothsim
+from . import op_boundary_alinged_remesh
+from . import op_clean_up_edges
+
 bl_info = {
         'name': 'Seams to Sewing Pattern',
         'author': 'Thomas Kole',
@@ -11,6 +17,9 @@ bl_info = {
         'location': 'Object > Seams to Sewing Pattern > ...',
         'wiki_url': 'https://blenderartists.org/t/1248713'}
 
+
+# Development and Debugging:
+# Using importlib.reload allows you to see the effects of your changes immediately without restarting the script.
 if "bpy" in locals():
     import importlib
     importlib.reload(op_seams_to_sewingpattern)
@@ -18,13 +27,6 @@ if "bpy" in locals():
     importlib.reload(op_quick_clothsim)
     importlib.reload(op_boundary_alinged_remesh)
     importlib.reload(op_clean_up_edges)
-else:
-    from . import op_seams_to_sewingpattern
-    from . import op_export_sewingpattern
-    from . import op_quick_clothsim
-    from . import op_boundary_alinged_remesh
-    from . import op_clean_up_edges
-
 
 
 def clean_up_func(self, context):
@@ -38,6 +40,7 @@ def menu_func(self, context):
     lay_out.separator()
     lay_out.menu("VIEW3D_MT_object_seams_to_sewing_pattern_menu",
                 text="Seams to Sewing Pattern")
+
 
 class VIEW3D_MT_object_seams_to_sewing_pattern_menu(Menu):
     bl_idname = "VIEW3D_MT_object_seams_to_sewing_pattern_menu"
@@ -62,6 +65,7 @@ classes = [
     op_clean_up_edges.CleanUpEdges
     ]
 
+
 def register():
     from bpy.utils import register_class
     for cls in classes:
@@ -73,9 +77,7 @@ def register():
     bpy.types.VIEW3D_MT_edit_mesh_context_menu.append(clean_up_func)
 
 
-
 def unregister():
-
     bpy.types.VIEW3D_MT_edit_mesh_clean.remove(clean_up_func)
     bpy.types.VIEW3D_MT_edit_mesh_edges.remove(clean_up_func)
     bpy.types.VIEW3D_MT_edit_mesh_context_menu.append(clean_up_func)
