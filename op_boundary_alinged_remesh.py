@@ -63,9 +63,8 @@ class BoundaryAlignedRemesher:
             if edge.calc_length() > upper_length:
                 subdivide.append(edge)
 
-        self.faces_list = list(self.bm.faces)
         bmesh.ops.subdivide_edges(self.bm, edges=subdivide, cuts=1)
-        bmesh.ops.triangulate(self.bm, faces=self.faces_list)
+        bmesh.ops.triangulate(self.bm, faces=list(self.bm.faces))
 
         # Remove verts with less than 5 edges, this helps inprove mesh quality
         dissolve_verts = []
@@ -75,7 +74,7 @@ class BoundaryAlignedRemesher:
                     dissolve_verts.append(vert)
 
         bmesh.ops.dissolve_verts(self.bm, verts=dissolve_verts)
-        bmesh.ops.triangulate(self.bm, faces=self.faces_list)
+        bmesh.ops.triangulate(self.bm, faces=list(self.bm.faces))
 
         # Collapse short edges but ignore boundaries and never collapse two chained edges
         lock_verts = set(vert for vert in self.bm.verts if vert.is_boundary)
@@ -90,7 +89,7 @@ class BoundaryAlignedRemesher:
                 lock_verts |= verts
 
         bmesh.ops.collapse(self.bm, edges=collapse, uvs=True)
-        bmesh.ops.beautify_fill(self.bm, faces=self.faces_list, method="ANGLE")
+        bmesh.ops.beautify_fill(self.bm, faces=list(self.bm.faces), method="ANGLE")
 
     def align_verts(self, rule=(-1, -2, -3, -4)):
         # Align verts to the nearest boundary by averaging neigbor vert locations selected
@@ -149,7 +148,7 @@ class BoundaryAlignedRemesher:
         if quads:
             bmesh.ops.join_triangles(
                 self.bm,
-                faces=self.faces_list,
+                faces=list(self.bm.faces),
                 angle_face_threshold=3.14,
                 angle_shape_threshold=3.14,
             )
