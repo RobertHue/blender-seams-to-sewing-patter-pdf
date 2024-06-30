@@ -1,9 +1,10 @@
 import math
 from collections import defaultdict
 
+import mathutils
+
 import bmesh
 import bpy
-import mathutils
 from bpy.props import BoolProperty
 from bpy.props import EnumProperty
 from bpy.props import IntProperty
