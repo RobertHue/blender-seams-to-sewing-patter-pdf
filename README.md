@@ -1,4 +1,4 @@
-# blender Seams to Sewing pattern
+# Blender Seams to Sewing Pattern
 
 An add-on for Blender that assists with setting up 2D sewing patterns from 3D models, for cloth simulation and real-life sewing.
 
@@ -6,7 +6,8 @@ An add-on for Blender that assists with setting up 2D sewing patterns from 3D mo
 [![](https://img.youtube.com/vi/EZr__pTxsKk/mqdefault.jpg)\
 ▶ Quick guide on youtube](https://www.youtube.com/watch?v=EZr__pTxsKk)
 
-# installation
+## Installation
+
 Download the archive here:\
 https://gitlab.com/thomaskole/blender-seams-to-sewing-pattern/-/archive/master/blender-seams-to-sewing-pattern-master.zip
 
@@ -65,6 +66,7 @@ To install these dependencies, just execute the following command:
    ```console
    poetry install
    ```
+
 ### Possible Issues
 
 If you get the following error while launcher `Blender: Start`
@@ -75,6 +77,9 @@ Then manually install the requirements with the following command; replacing the
 `c:\Program Files\Blender Foundation\Blender x\x\python\bin\python.EXE" -m pip install debugpy click flask`
 
 As described in https://github.com/JacquesLucke/blender_vscode/issues/99#issuecomment-1065896620
+
+## Reporting Issues
+
 Something wrong? Please let me know.
 
 There's a Blender Artists thread here: https://blenderartists.org/t/1248713 \
@@ -82,7 +87,7 @@ You can also add an issue here on GitLab,\
 or get in touch with me otherwise: \
 http://www.thomaskole.nl
 
-# troubleshooting
+## Troubleshooting
 
 **I'm getting a python error**\
 That's bad, please let me know the error and how you triggered it.
@@ -95,12 +100,12 @@ Disable the remesh option and see where it goes wrong in your mesh / UV'seams
 Yeah, clothsim... Try balancing the "pressure" and "sewing force".\
 It can help to keyframe the "pressure" to something very high on frame 1 and decrease over time.
 
-# license
+## License
 
 GPL V2:\
 [GPL-license.txt](./GPL-license.txt)
 
-# sustainability and ethics 🌱
+## Sustainability and Ethics 🌱
 
 The production of natural textiles often involve overuse of water, fertilizers and perticides.\
 Synthetic textiles are a large, often overlooked source of plastic pollution.\
@@ -111,6 +116,6 @@ If you wish to use this add-on for real-life sewing purposes, I ask of you to us
 See also:\
 [Sustainability-and-Ethics-notice.txt](./Sustainability-and-Ethics-notice.txt)
 
-# known issues
+## Known Issues
 
 - UV's are messed up after Remesh
