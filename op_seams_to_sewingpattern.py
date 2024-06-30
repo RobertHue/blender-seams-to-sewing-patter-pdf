@@ -327,7 +327,7 @@ class Seams_To_SewingPattern(Operator):
         if self.use_remesh:
             bpy.ops.mesh.dissolve_limited(angle_limit=0.01)
             bpy.ops.object.mode_set(mode="OBJECT", toggle=False)
-            bpy.ops.remesh.boundary_aligned_remesh(
+            bpy.ops.remesh.boundary_aligned_remesh( # type: ignore
                 edge_length=max_edge_length, iterations=10, reproject=False
             )
 
