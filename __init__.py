@@ -1,11 +1,12 @@
 import bpy
 from bpy.types import Menu
 
-from . import op_seams_to_sewingpattern
-from . import op_export_sewingpattern
-from . import op_quick_clothsim
 from . import op_boundary_alinged_remesh
 from . import op_clean_up_edges
+from . import op_export_sewingpattern
+from . import op_quick_clothsim
+from . import op_seams_to_sewingpattern
+
 
 bl_info = {
         'name': 'Seams to Sewing Pattern',

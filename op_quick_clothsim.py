@@ -1,9 +1,9 @@
 import bpy
 from bpy.props import BoolProperty
 from bpy.props import EnumProperty
+from bpy.types import ClothModifier
 from bpy.types import Operator
 
-from bpy.types import ClothModifier
 
 class ObjectModeOperator:
     @classmethod
