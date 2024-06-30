@@ -132,7 +132,6 @@ ignore = [
     "E501",  # Line too long (override for long lines in comments or docstrings)
     "F401",  # Module imported but unused (common in bpy scripts)
     "F841",  # Local variable is assigned to but never used (common in bpy scripts)
-    "W503",  # Line break before binary operator (personal preference)
 ]
 unfixable = []
 line-length = 80
@@ -166,10 +165,11 @@ max-args = 15
 allow-magic-value-types = ["str", "bytes", "complex", "float", "int"]
 
 ################################################################################
-# Static Type Checker (here: PyRight)
+# Static Type Checker (here: PyRight); Note: PyRight is used by PyLance!
 
 [tool.pyright]
 typeCheckingMode = "basic"
+
 # enable subset of "strict"
 reportDuplicateImport = true
 reportInvalidStubStatement = true
@@ -179,6 +179,7 @@ reportUntypedClassDecorator = true
 reportUntypedFunctionDecorator = true
 reportUntypedNamedTuple = true
 reportUnusedImport = true
+
 # disable subset of "basic"
 reportGeneralTypeIssues = false
 reportMissingModuleSource = false
