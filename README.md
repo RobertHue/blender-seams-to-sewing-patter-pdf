@@ -36,7 +36,45 @@ Exports your sewing pattern to a .SVG file for printing and sewing in real life.
 `Edge > Clean up Knife Cut`\
 Clean up selected edges after you used the knife tool on a mesh
 
-# reporting issues
+## Development
+
+## Repository structure
+
+The repository is structured as follows:
+
+- `.vscode/`: workspace configuration for [VSCode]
+- `pyproject.toml`: configuration file for [Poetry], [isort], [Black], [mypy], [Ruff] and [pyright]
+- `README.md`: the README file that you are reading right now
+
+### Installation prerequisites
+
+- [Git]
+- [VSCode]
+- [Python] (see `pyproject.toml` for it's version)
+- Install [Poetry], as follows:
+
+   ```console
+   python -m pip install --upgrade pip
+   python -m pip install --user pipx
+   python -m pipx ensurepath
+   pipx install poetry
+   ```
+
+To install these dependencies, just execute the following command:
+
+   ```console
+   poetry install
+   ```
+### Possible Issues
+
+If you get the following error while launcher `Blender: Start`
+
+`could not install debugpy blender addon`
+
+Then manually install the requirements with the following command; replacing the x with your Blender version:
+`c:\Program Files\Blender Foundation\Blender x\x\python\bin\python.EXE" -m pip install debugpy click flask`
+
+As described in https://github.com/JacquesLucke/blender_vscode/issues/99#issuecomment-1065896620
 Something wrong? Please let me know.
 
 There's a Blender Artists thread here: https://blenderartists.org/t/1248713 \
