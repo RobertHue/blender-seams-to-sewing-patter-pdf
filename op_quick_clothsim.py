@@ -3,6 +3,7 @@ from bpy.props import BoolProperty
 from bpy.props import EnumProperty
 from bpy.types import Operator
 
+from bpy.types import ClothModifier
 
 class ObjectModeOperator:
     @classmethod
@@ -47,6 +48,12 @@ class QuickClothsim(ObjectModeOperator, Operator):
         if objects is not None:
             for obj in objects:
                 cloth_mod = obj.modifiers.new(name="Cloth", type="CLOTH")
+
+                # Ensure cloth_mod is a ClothModifier
+                if not isinstance(cloth_mod, ClothModifier):
+                    self.report({'ERROR'}, "Active object does not have a ClothModifier")
+                    return {'CANCELLED'}
+
                 # pressure
                 if self.pressure_style != "OFF":
                     cloth_mod.settings.use_pressure = True
@@ -67,4 +74,5 @@ class QuickClothsim(ObjectModeOperator, Operator):
                     cloth_mod.settings.air_damping = 10
                 if self.use_gravity == False:
                     cloth_mod.settings.effector_weights.gravity = 0
+
         return {"FINISHED"}
