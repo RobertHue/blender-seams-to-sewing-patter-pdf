@@ -1,3 +1,6 @@
+import bpy
+from bpy.types import Menu
+
 bl_info = {
         'name': 'Seams to Sewing Pattern',
         'author': 'Thomas Kole',
@@ -22,8 +25,6 @@ else:
     from . import op_boundary_alinged_remesh
     from . import op_clean_up_edges
 
-import bpy
-from bpy.types import Menu
 
 
 def clean_up_func(self, context):
@@ -37,7 +38,7 @@ def menu_func(self, context):
     lay_out.separator()
     lay_out.menu("VIEW3D_MT_object_seams_to_sewing_pattern_menu",
                 text="Seams to Sewing Pattern")
-    
+
 class VIEW3D_MT_object_seams_to_sewing_pattern_menu(Menu):
     bl_idname = "VIEW3D_MT_object_seams_to_sewing_pattern_menu"
     bl_label = "Seams to Sewing Pattern"
@@ -74,7 +75,7 @@ def register():
 
 
 def unregister():
-    
+
     bpy.types.VIEW3D_MT_edit_mesh_clean.remove(clean_up_func)
     bpy.types.VIEW3D_MT_edit_mesh_edges.remove(clean_up_func)
     bpy.types.VIEW3D_MT_edit_mesh_context_menu.append(clean_up_func)
