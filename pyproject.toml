@@ -132,7 +132,7 @@ exclude = ["examples"]
 # LINTER
 
 [tool.ruff]
-target-version = ">=3.8"
+target-version = ["py38", "py39", "py310", "py311"]
 select = ["F", "E"]
 extend-select = ["W", "C90", "YTT", "ANN", "ASYNC", "A", "C4", "RET", "SIM", "PLC", "PLE", "PLR", "PLW", "FLY", "PERF", "RUF", "UP", "SIM"]
 ignore = ["F401", "E402", "B905", "SIM300", "PD901", "PERF203", "ANN101", "PLR5501"]
