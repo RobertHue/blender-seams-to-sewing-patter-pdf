@@ -10,7 +10,6 @@ from bpy.props import EnumProperty
 from bpy.props import IntProperty
 from bpy.types import Operator
 
-
 if bpy.app.version >= (3, 0, 0):
     from . import function_wrapper_3_0 as function_wrapper
 elif bpy.app.version >= (2, 90, 0):
@@ -125,7 +124,7 @@ class Seams_To_SewingPattern(Operator):
         bpy.ops.mesh.select_all(action="DESELECT")
 
         # Ensure me is a Mesh
-        if not isinstance(obj.data, bpy.types.Mesh):
+        if isinstance(me, bpy.types.Mesh):
             bm = bmesh.from_edit_mesh(me)
         else:
             self.report({'ERROR'}, "Active object's data is not a mesh")
