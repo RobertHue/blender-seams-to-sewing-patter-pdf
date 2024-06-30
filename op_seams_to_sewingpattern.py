@@ -97,7 +97,7 @@ class Seams_To_SewingPattern(Operator):
     def execute(self, context):
         if self.keep_original:
             # Duplicate selection to keep original.
-            src_obj = bpy.context.active_object
+            src_obj: bpy.context.active_object = bpy.context.active_object
             obj = src_obj.copy()
             obj.data = src_obj.data.copy()
             obj.animation_data_clear()
