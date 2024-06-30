@@ -3,7 +3,7 @@ import bpy
 
 
 def do_bevel():
-    bpy.ops.mesh.bevel(vertex_only=False, offset=0.0002)
+    bpy.ops.mesh.bevel(vertex_only=False, offset=0.0002)  # type: ignore
 
 
 def do_update_edit_mesh(m):
