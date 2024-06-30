@@ -57,7 +57,8 @@ class Export_Sewingpattern(bpy.types.Operator):
     @classmethod
     def poll(cls, context):
         obj = context.active_object
-        return obj is not None and obj.type == "MESH" and obj.data.uv_layers
+
+        return obj is not None and obj.type == "MESH" and isinstance(obj.data, bpy.types.Mesh) and obj.data.uv_layers
 
     def invoke(self, context, event):
         # stuff to check / set before goes here :)
