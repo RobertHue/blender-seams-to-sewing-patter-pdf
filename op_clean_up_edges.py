@@ -134,7 +134,7 @@ class CleanUpEdges(bpy.types.Operator):
             for e in edges:
                 for v in e.verts:
                     for le in v.link_edges:
-                        if le.seam and not (le in edges):
+                        if le.seam and (le not in edges):
                             e.select = False
                             break
 
