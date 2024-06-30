@@ -13,8 +13,16 @@ https://gitlab.com/thomaskole/blender-seams-to-sewing-pattern/-/archive/master/b
 In Blender, go to `Edit > ⚙️ Preferences > Install..` and select the zip file you just downloaded.\
 Enable the add-on in the list.
 
-# very brief overview:
-![](https://gitlab.com/thomaskole/blender-seams-to-sewing-pattern/-/wikis/uploads/2364f88e60b43cf0cc44309c2e4f15be/triceratops.gif)
+## Usage
+
+For a overview of how to use the Addon refer to https://www.thomaskole.nl/s2s/
+
+Note that `UV Editor > Overlays > UV Editing > Display Stretch > Type: Area` is not part of this Addon and a Blender specific feature but useful for this Addon.
+If there are places that show up too green, it will apply too much tension to the fabric.
+
+### Very Brief Overview
+
+![triceratops showcase](https://gitlab.com/thomaskole/blender-seams-to-sewing-pattern/-/wikis/uploads/2364f88e60b43cf0cc44309c2e4f15be/triceratops.gif)
 
 `Object > Seams to Sewing Pattern > Seams to Sewing Pattern`\
 turns your mesh into a sewing patten based on it's UV layout.
