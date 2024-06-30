@@ -133,7 +133,7 @@ class Export_Sewingpattern(bpy.types.Operator):
         svgstring += "\n<defs><style>.seam{stroke: #000; stroke-width:1px; fill:white} .sewinguide{stroke-width:1px;}</style></defs>"
 
         face_groups = []
-        faces = set(bm.faces[:])
+        faces = set(bm.faces)
         while faces:
             bpy.ops.mesh.select_all(action="DESELECT")
             face = faces.pop()
