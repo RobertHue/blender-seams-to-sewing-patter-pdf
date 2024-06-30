@@ -204,8 +204,8 @@ class Export_Sewingpattern(bpy.types.Operator):
 
                 svgstring += "M "
 
-                for l in lg:
-                    uv = l[uv_layer].uv.copy()
+                for e in lg:
+                    uv = e[uv_layer].uv.copy()
                     svgstring += str(uv.x * document_scale)
                     svgstring += ","
                     svgstring += str((1 - uv.y) * document_scale)
@@ -217,9 +217,9 @@ class Export_Sewingpattern(bpy.types.Operator):
             for lg in loop_groups:
                 # markers
                 if self.alignment_markers != "OFF":
-                    for l in lg:
+                    for e in lg:
                         has_wire = False
-                        for w in l.vert.link_edges:
+                        for w in e.vert.link_edges:
                             if w.is_wire and w.seam:
                                 has_wire = True
                                 svgstring += self.add_alignment_marker(
@@ -237,13 +237,13 @@ class Export_Sewingpattern(bpy.types.Operator):
 
     def add_alignment_marker(self, loop, wire, uv_layer, document_scale):
         wire_dir = mathutils.Vector((0, 0))
-        for l in loop.vert.link_edges:
-            if len(l.link_loops) > 0 and len(l.link_faces) == 1:
+        for e in loop.vert.link_edges:
+            if len(e.link_loops) > 0 and len(e.link_faces) == 1:
                 this_dir = (
-                    l.link_loops[0][uv_layer].uv
-                    - l.link_loops[0].link_loop_next[uv_layer].uv
+                    e.link_loops[0][uv_layer].uv
+                    - e.link_loops[0].link_loop_next[uv_layer].uv
                 )
-                if l.link_loops[0].vert == loop.vert:
+                if e.link_loops[0].vert == loop.vert:
                     wire_dir -= this_dir
                 else:
                     wire_dir -= this_dir
@@ -310,6 +310,6 @@ class Export_Sewingpattern(bpy.types.Operator):
                 if len(e.link_faces) != 0:
                     intrest += 1
             if intrest == 2:
-                for l in v.link_edges:
-                    if len(l.link_faces) == 0:
-                        l.seam = True
+                for e in v.link_edges:
+                    if len(e.link_faces) == 0:
+                        e.seam = True
