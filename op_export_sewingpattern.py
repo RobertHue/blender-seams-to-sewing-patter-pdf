@@ -156,12 +156,12 @@ class Export_Sewingpattern(bpy.types.Operator):
 
             boundary_loop = [e for e in bm.edges if e.select]
 
-            relevant_loops = []
+            relevant_loops: List[bmesh.types.BMLoop] = []
 
             for e in boundary_loop:
                 relevant_loops.append(e.link_loops[0])
 
-            loop_groups = [[]]
+            loop_groups: List[List[bmesh.types.BMLoop]] = [[]]
 
             while len(relevant_loops) > 0:
                 temp_group = [relevant_loops[0]]
